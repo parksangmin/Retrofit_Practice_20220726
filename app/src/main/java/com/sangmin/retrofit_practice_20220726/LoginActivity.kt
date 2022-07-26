@@ -9,6 +9,7 @@ import com.sangmin.retrofit_practice_20220726.api.APIList
 import com.sangmin.retrofit_practice_20220726.api.ServerApi
 import com.sangmin.retrofit_practice_20220726.databinding.ActivityLoginBinding
 import com.sangmin.retrofit_practice_20220726.datas.BaseResponse
+import com.sangmin.retrofit_practice_20220726.datas.BasicResponse
 import retrofit2.*
 
 class LoginActivity : BaseActivity() {
@@ -39,8 +40,8 @@ class LoginActivity : BaseActivity() {
             val inputPw = mBinding.passwordEdt.text.toString()
 
 //            로그인 API 연결 로직
-            apiList.getRequestLogin(inputEmail, inputPw).enqueue(object : Callback<JSONObject>{
-                override fun onResponse(call: Call<JSONObject>, response: Response<JSONObject>) {
+            apiList.getRequestLogin(inputEmail, inputPw).enqueue(object : Callback<BasicResponse>{
+                override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
 //           실제로 response가 도달했을 때
                     val responseStr = response.toString()
                     Log.d("로그인",responseStr)
@@ -48,6 +49,7 @@ class LoginActivity : BaseActivity() {
 //                        응답이 성공 (로그인 로직 성공 - id / pw 일치)
                         val rb = response.body()
                         Log.d("로그인 성공", rb.toString())
+
 
                     }
                     else {
@@ -63,7 +65,7 @@ class LoginActivity : BaseActivity() {
                     }
                 }
 
-                override fun onFailure(call: Call<JSONObject>, t: Throwable) {
+                override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
 //                   어떠한 response도 없을 떄(응답 없음) > 실제적으로 인터넷 연결 불량
                     Log. d("실패", "fail123")
                 }
