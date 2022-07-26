@@ -1,4 +1,6 @@
 package com.sangmin.retrofit_practice_20220726.datas
 
-class DataResponse() {
+class DataResponse(
+    val token : String,
+) {
 }
