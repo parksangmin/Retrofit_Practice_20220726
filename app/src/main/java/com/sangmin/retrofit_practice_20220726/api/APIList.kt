@@ -19,6 +19,14 @@ interface APIList {
     ) : Call<BasicResponse>
 
 
+//    이메일 중복 체크
+    @GET("/user_check")
+    fun getRequestCheckValue (
+    @Query("type") type : String,
+    @Query("value") value : String,
+    ) : Call<BasicResponse>
+
+
 
 
 }
