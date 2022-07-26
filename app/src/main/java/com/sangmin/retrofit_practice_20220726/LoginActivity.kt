@@ -1,6 +1,7 @@
 package com.sangmin.retrofit_practice_20220726
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.databinding.DataBindingUtil
@@ -63,6 +64,11 @@ class LoginActivity : BaseActivity() {
 //            val myIntent = Intent(mContext, MainActivity::class.java)
 //            startActivity(myIntent)
 //            finish()
+        }
+
+        mBinding.signUpBtn.setOnClickListener {
+            val myIntent = Intent(mContext, SignUpActivity::class.java)
+            startActivity(myIntent)
         }
     }
 
