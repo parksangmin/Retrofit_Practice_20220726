@@ -6,10 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.databinding.DataBindingUtil
 import org.json.JSONObject
-import com.sangmin.retrofit_practice_20220726.api.APIList
-import com.sangmin.retrofit_practice_20220726.api.ServerApi
 import com.sangmin.retrofit_practice_20220726.databinding.ActivityLoginBinding
-import com.sangmin.retrofit_practice_20220726.datas.BaseResponse
 import com.sangmin.retrofit_practice_20220726.datas.BasicResponse
 import com.sangmin.retrofit_practice_20220726.utils.ContextUtil
 import retrofit2.*

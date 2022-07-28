@@ -1,9 +1,7 @@
 package com.sangmin.retrofit_practice_20220726.api
 
 
-import com.sangmin.retrofit_practice_20220726.datas.BaseResponse
 import com.sangmin.retrofit_practice_20220726.datas.BasicResponse
-import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.http.*
 
