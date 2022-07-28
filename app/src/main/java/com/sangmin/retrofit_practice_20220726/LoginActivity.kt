@@ -11,12 +11,12 @@ import com.sangmin.retrofit_practice_20220726.api.ServerApi
 import com.sangmin.retrofit_practice_20220726.databinding.ActivityLoginBinding
 import com.sangmin.retrofit_practice_20220726.datas.BaseResponse
 import com.sangmin.retrofit_practice_20220726.datas.BasicResponse
+import com.sangmin.retrofit_practice_20220726.utils.ContextUtil
 import retrofit2.*
 
 class LoginActivity : BaseActivity() {
 
-    lateinit var mBinding : ActivityLoginBinding
-
+    lateinit var mBinding: ActivityLoginBinding
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,24 +32,37 @@ class LoginActivity : BaseActivity() {
             val inputPw = mBinding.passwordEdt.text.toString()
 
 //            로그인 API 연결 로직
-            apiList.getRequestLogin(inputEmail, inputPw).enqueue(object : Callback<BasicResponse>{
-                override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
+            apiList.getRequestLogin(inputEmail, inputPw).enqueue(object : Callback<BasicResponse> {
+                override fun onResponse(
+                    call: Call<BasicResponse>,
+                    response: Response<BasicResponse>
+                ) {
 //           실제로 response가 도달했을 때
                     val responseStr = response.toString()
-                    Log.d("로그인",responseStr)
+                    Log.d("로그인", responseStr)
                     if (response.isSuccessful) {
 //                        응답이 성공 (로그인 로직 성공 - id / pw 일치)
-                        val rb = response.body()
-                        Log.d("로그인 성공", rb.toString())
+                        val br = response.body()!!
+                        Log.d("로그인 성공", br.toString())
+
+//  로그인 토큰 저장
+                        val token = br.data.token
+                        ContextUtil.setLoginToken(mContext, token)
+
+//                        자동 로그인 체크 여부 저장
+                        ContextUtil.setAutoLogin(mContext, mBinding.autoLoginCb.isChecked)
+
+                        val myIntent = Intent(mContext, MainActivity::class.java)
+                        startActivity(myIntent)
+                        finish()
 
 
-                    }
-                    else {
+                    } else {
 //                        응답 실패 (로그인 로직 실패)
 
                         Log.d("실패", "fail")
 
-                       val errorBodyStr = response.errorBody()!!.string()
+                        val errorBodyStr = response.errorBody()!!.string()
                         val jsonObj = JSONObject(errorBodyStr)
                         val message = jsonObj.getString("message")
 
@@ -59,18 +72,18 @@ class LoginActivity : BaseActivity() {
 
                 override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
 //                   어떠한 response도 없을 떄(응답 없음) > 실제적으로 인터넷 연결 불량
-                    Log. d("실패", "fail123")
+                    Log.d("실패", "fail123")
                 }
             })
-//            val myIntent = Intent(mContext, MainActivity::class.java)
-//            startActivity(myIntent)
-//            finish()
+
         }
 
         mBinding.signUpBtn.setOnClickListener {
             val myIntent = Intent(mContext, SignUpActivity::class.java)
             startActivity(myIntent)
         }
+
+
     }
 
     override fun setValues() {
