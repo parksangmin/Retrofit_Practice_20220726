@@ -44,6 +44,7 @@ class SignUpActivity : BaseActivity() {
                             Log.d("응답", br.toString())
                             mBinding.checkEmailTxt.text = br.message
                             Toast.makeText(mContext, br.message, Toast.LENGTH_SHORT).show()
+                            emailOk = true
 
                         }
                         else {
@@ -52,6 +53,7 @@ class SignUpActivity : BaseActivity() {
                             val message = jsonObj.getString("message")
                             Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show()
                             mBinding.checkEmailTxt.text ="중복 검사를 해주세요"
+                            emailOk = false
 
                         }
 
@@ -80,6 +82,7 @@ class SignUpActivity : BaseActivity() {
                             val br = response.body()!!
                             mBinding.checkNickTxt.text = br.message
                             Toast.makeText(mContext, br.message, Toast.LENGTH_SHORT).show()
+                            nickOk = true
                         }
                         else {
 //                            errorBody를 Json Parsing
@@ -89,6 +92,7 @@ class SignUpActivity : BaseActivity() {
 
                             Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show()
                             mBinding.checkNickTxt.text = "중복 검사를 해주세요"
+                            nickOk = false
                         }
 
                     }
