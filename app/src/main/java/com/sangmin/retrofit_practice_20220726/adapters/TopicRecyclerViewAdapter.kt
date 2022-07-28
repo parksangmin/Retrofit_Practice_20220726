@@ -4,7 +4,10 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.sangmin.retrofit_practice_20220726.R
 import com.sangmin.retrofit_practice_20220726.datas.TopicData
 
@@ -16,6 +19,15 @@ class TopicRecyclerViewAdapter(
 
     inner class MyViewHolder(view : View) : RecyclerView.ViewHolder(view) {
         fun bind(item : TopicData) {
+            val backgroundImg = itemView.findViewById<ImageView>(R.id.backgroundImg)
+            val titleTxt = itemView.findViewById<TextView>(R.id.titleTxt)
+            val replyCountTxt = itemView.findViewById<TextView>(R.id.replyCountTxt)
+
+            titleTxt.text = item.title
+            replyCountTxt.text = "${item.reply_count}명 참여중"
+            Glide.with(mContext)
+                .load(item.img_url)
+                .into(backgroundImg)
 
         }
 
