@@ -3,9 +3,19 @@ package com.sangmin.retrofit_practice_20220726.api
 
 import com.sangmin.retrofit_practice_20220726.datas.BasicResponse
 import retrofit2.Call
+import retrofit2.Callback
 import retrofit2.http.*
 
 interface APIList {
+// main
+//  토픽데이터 받아오기
+    @GET("/main_info")
+    fun getRequestMainInfo (
+    @Header("X-Http-Token") token : String
+    ) : Call<BasicResponse>
+
+
+
 
 //    user
 //    로그인
