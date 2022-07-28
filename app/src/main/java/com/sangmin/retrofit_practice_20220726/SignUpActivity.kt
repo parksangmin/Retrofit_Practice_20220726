@@ -16,6 +16,10 @@ class SignUpActivity : BaseActivity() {
 
     lateinit var mBinding : ActivitySignUpBinding
 
+
+    var emailOk = false
+    var nickOk = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mBinding = DataBindingUtil.setContentView(this,R.layout.activity_sign_up)
@@ -96,6 +100,35 @@ class SignUpActivity : BaseActivity() {
                 })
         }
 
+//        회원 가입 로직
+        mBinding.signUpBtn.setOnClickListener {
+//            1. 이메일 중복 체크를 했는가? (맴버변수로 Boolean 값 - emailOk = true / false)
+            if(!emailOk) {
+                Toast.makeText(mContext, "이메일 중복체크를 해주세요", Toast.LENGTH_SHORT).show()
+//                setOnClickListener 아래 코드를 스킵하고 탈출하는 코드(JAVA - Break)
+                return@setOnClickListener
+            }
+
+//            2. 닉네임 중복 체크를 했는가?
+            if(!nickOk){
+                Toast.makeText(mContext, "닉네임 중복체크를 해주세요 ", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+//            3. 비밀번호를 입력하였는가?
+            val inputPw = mBinding.passwordEdt.text.toString()
+//            isEmpty : String 값이 비어있는가? (공백 인정)
+//            isBlank : String 값이 비어있는가? (공백 인정 x)
+            if (inputPw.isBlank()) {
+//                비밀번호가 공백 값이거나 or 빈 값
+                Toast.makeText(mContext, "비밀번호를 입력해주세요", Toast.LENGTH_SHORT).show()
+                Toast.makeText(mContext, "비밀번호는 공백일 수 없습니다", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+//            회원가입 로직 실행
+
+        }
     }
     override fun setValues() {
 
