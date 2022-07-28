@@ -131,6 +131,26 @@ class SignUpActivity : BaseActivity() {
             }
 
 //            회원가입 로직 실행
+            val inputEmail = mBinding.emailEdt.text.toString()
+            val inputNick = mBinding.nickEdt.text.toString()
+            apiList.getRequestSignUp(inputEmail, inputPw, inputNick)
+                .enqueue(object : Callback<BasicResponse>{
+                    override fun onResponse(
+                        call: Call<BasicResponse>,
+                        response: Response<BasicResponse>
+                    ) {
+                        if (response.isSuccessful) {
+                            val br = response.body()!!
+                            val nickname = br.data.user.nick_name
+                            Toast.makeText(mContext, "${nickname}님 가입을 환영합니다", Toast.LENGTH_SHORT).show()
+                            finish()
+                        }
+                    }
+
+                    override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
+
+                    }
+                })
 
         }
     }

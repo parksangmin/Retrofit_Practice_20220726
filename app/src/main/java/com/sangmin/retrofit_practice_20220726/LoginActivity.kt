@@ -18,6 +18,7 @@ class LoginActivity : BaseActivity() {
     lateinit var mBinding : ActivityLoginBinding
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_login)
