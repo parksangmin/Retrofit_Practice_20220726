@@ -9,6 +9,7 @@ import org.json.JSONObject
 import com.sangmin.retrofit_practice_20220726.databinding.ActivityLoginBinding
 import com.sangmin.retrofit_practice_20220726.datas.BasicResponse
 import com.sangmin.retrofit_practice_20220726.utils.ContextUtil
+import com.sangmin.retrofit_practice_20220726.utils.GlobalData
 import retrofit2.*
 
 class LoginActivity : BaseActivity() {
@@ -48,6 +49,8 @@ class LoginActivity : BaseActivity() {
 
 //                        자동 로그인 체크 여부 저장
                         ContextUtil.setAutoLogin(mContext, mBinding.autoLoginCb.isChecked)
+
+                        GlobalData.loginUser = br.data.user
 
                         val myIntent = Intent(mContext, MainActivity::class.java)
                         startActivity(myIntent)
