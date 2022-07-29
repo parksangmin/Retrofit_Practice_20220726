@@ -4,6 +4,11 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.ImageView
+import android.widget.Toast
+import androidx.appcompat.app.ActionBar
+import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sangmin.retrofit_practice_20220726.adapters.TopicRecyclerViewAdapter
@@ -100,6 +105,7 @@ class MainActivity : BaseActivity() {
 
 
     }
+
 
 
 }
