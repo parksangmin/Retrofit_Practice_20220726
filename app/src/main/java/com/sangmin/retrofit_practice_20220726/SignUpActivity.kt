@@ -3,6 +3,7 @@ package com.sangmin.retrofit_practice_20220726
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.sangmin.retrofit_practice_20220726.databinding.ActivitySignUpBinding
@@ -155,8 +156,15 @@ class SignUpActivity : BaseActivity() {
                 })
 
         }
+
+        backBtn.setOnClickListener {
+            finish()
+        }
     }
     override fun setValues() {
+
+        titleTxt.text = "회원가입"
+        backBtn.visibility = View.VISIBLE
 
     }
 //[도전과제]

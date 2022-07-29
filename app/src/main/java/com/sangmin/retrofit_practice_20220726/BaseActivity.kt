@@ -4,12 +4,14 @@ import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.sangmin.retrofit_practice_20220726.api.APIList
 import com.sangmin.retrofit_practice_20220726.api.ServerApi
+import org.w3c.dom.Text
 import retrofit2.Retrofit
 
 abstract class BaseActivity : AppCompatActivity() {
@@ -23,7 +25,12 @@ abstract class BaseActivity : AppCompatActivity() {
     lateinit var retrofit: Retrofit
     lateinit var apiList: APIList
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+//    커스텀 액션바 버튼 관련 맴버 변수
+    lateinit var backBtn : ImageView
+    lateinit var titleTxt : TextView
+    lateinit var userImg : ImageView
+
+   override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
 
@@ -64,7 +71,9 @@ abstract class BaseActivity : AppCompatActivity() {
         val myToolbar = defaultActionBar.customView.parent as Toolbar
         myToolbar.setContentInsetsAbsolute(0,0)
 
-        val userImg = defaultActionBar.customView.findViewById<ImageView>(R.id.userImg)
+        backBtn = defaultActionBar.customView.findViewById(R.id.backBtn)
+        titleTxt = defaultActionBar.customView.findViewById(R.id.titleTxt)
+        userImg = defaultActionBar.customView.findViewById(R.id.userImg)
 
         userImg.visibility = View.VISIBLE
 
