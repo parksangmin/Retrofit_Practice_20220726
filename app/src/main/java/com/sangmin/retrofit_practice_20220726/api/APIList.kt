@@ -22,6 +22,13 @@ interface APIList {
     @Path ("topic_id") topicId: Int
     ) : Call<BasicResponse>
 
+    @FormUrlEncoded
+    @POST("/topic_vote")
+    fun getRequestTopicVote(
+        @Header("X-Http-Token") token: String,
+        @Field("side_id") sideId : Int
+    ) : Call<BasicResponse>
+
 
 
 
